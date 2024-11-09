@@ -1,40 +1,45 @@
-
+# Compilers and options
+ASM             = nasm
 CC              = cc
-CFLAGS          = #-Wall -Werror -Wextra -I. Disable due gcc / clang warnings
-
-# Path to libasm.a
-PATH_TO_LIBASM_A  = ../libasm.a
+ASMFLAGS        = -f elf64
+CFLAGS          = -Wall -Werror -Wextra -I headers
 
 # NAMES and DIRS
-NAME            = libasm-tester
+NAME            = libasm.a
+TESTERNAME      = tester
+TESTSDIR		= srcs/tests
+SRCSDIR         = srcs
 OBJSDIR         = objs
 
 # Source and object files
-TESTERSRC       = tester.c \
-				  ft_strlen_tests.c \
-				  ft_strcpy_tests.c \
-				  ft_strcmp_tests.c \
-				  ft_strdup_tests.c \
-				  ft_write_tests.c \
-				  ft_read_tests.c \
-				  ft_atoi_base_tests.c \
+ASM_SRC         = $(SRCSDIR)/ft_strlen.s 				\
+                  $(SRCSDIR)/ft_strcpy.s 				\
+                  $(SRCSDIR)/ft_strcmp.s 				\
+                  $(SRCSDIR)/ft_write.s  				\
+                  $(SRCSDIR)/ft_read.s   				\
+                  $(SRCSDIR)/ft_strdup.s 				\
+				  $(SRCSDIR)/ft_atoi_base.s 	 		\
+				  $(SRCSDIR)/ft_list_push_front_bonus.s \
+                  $(SRCSDIR)/ft_list_size_bonus.s 		\
+				  $(SRCSDIR)/ft_list_remove_if.s 		\
+				  $(SRCSDIR)/ft_list_sort.s 	 		\
 
-TEST_OBJ        = $(TESTERSRC:%.c=$(OBJSDIR)/%.o)
+ASM_OBJ         = $(ASM_SRC:$(SRCSDIR)/%.s=$(OBJSDIR)/%.o)
+ASM_OBJ_BONUS   = $(ASM_BONUS_SRC:$(SRCSDIR)/%.s=$(OBJSDIR)/%.o)
 
 # Rules
 all: $(NAME)
-	make -C ../
 
-$(OBJSDIR)/%.o: %.c | $(OBJSDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+bonus: all
 
-$(NAME): $(TEST_OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(TEST_OBJ) $(PATH_TO_LIBASM_A)
+$(OBJSDIR)/%.o: $(SRCSDIR)/%.s | $(OBJSDIR)
+	$(ASM) $(ASMFLAGS) -o $@ $<
+
+$(NAME): $(ASM_OBJ)
+	ar -rcs $(NAME) $(ASM_OBJ)
 
 $(OBJSDIR):
 	mkdir -p $(OBJSDIR)
-
-test: $(NAME)
 
 clean:
 	rm -rf $(OBJSDIR)
@@ -43,3 +48,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+re_bonus: fclean all bonus

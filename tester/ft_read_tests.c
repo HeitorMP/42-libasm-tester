@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 22:29:46 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/08 22:44:07 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/09 07:47:21 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void run_ft_read_tests() {
     if (read_orig == -1 && read_my == -1) {
         assert(original_errno == my_errno);
     }
-
-    
 
     printf("All ft_read tests passed successfully!\n");
 }
