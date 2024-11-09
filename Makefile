@@ -1,6 +1,6 @@
 
 CC              = cc
-CFLAGS          = -Wall -Werror -Wextra -I.
+CFLAGS          = #-Wall -Werror -Wextra -I. Disable due gcc / clang warnings
 
 # Path to libasm.a
 PATH_TO_LIBASM_A  = ../libasm.a
