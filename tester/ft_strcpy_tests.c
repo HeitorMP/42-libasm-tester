@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:53:35 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 07:47:06 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:51:39 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,5 @@ void run_ft_strcpy_tests() {
     assert(strcmp(ft_strcpy(dest, "multiple words with spaces"), strcpy(dest, "multiple words with spaces")) == 0);
     bzero(dest,100);
 
-    printf("All ft_strcpy tests passed successfully!\n");
+    printf("\n$sAll ft_strcpy tests passed successfully!\n%s", GREEN, RESET);
 }

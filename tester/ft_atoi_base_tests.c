@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 22:47:10 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 07:48:08 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:52:49 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,5 @@ void run_ft_atoi_base_tests() {
     // Test 28: min int hexa converted to decimal
     assert(ft_atoi_base("-80000000", "0123456789abcdef") == -2147483648);
 
-    printf("All ft_atoi_base tests passed successfully!!\n");
+    printf("%s\nAll ft_atoi_base tests passed successfully!%s\n", GREEN, RESET);
 }

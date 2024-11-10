@@ -77,5 +77,5 @@ void run_ft_strcmp_tests() {
     assert((ft_strcmp("Hello ", "Hello") > 0) == (strcmp("Hello ", "Hello") > 0));
     assert((ft_strcmp("Hello", "Hello ") < 0) == (strcmp("Hello", "Hello ") < 0));
 
-    printf("All ft_strcmp tests passed successfully!\n");
+    printf("%s\nAll ft_strcmp tests passed successfully!\n%s", GREEN, RESET);
 }

@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 07:23:57 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 08:06:08 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:52:38 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void run_ft_list_size_tests() {
     assert(ft_list_size(list) == 5);
 
     free_list(list);
-    printf("All ft_list_size tests passed successfully!\n");
+    printf("%s\nAll ft_list_size tests passed successfully!\n%s", GREEN, RESET);
 }

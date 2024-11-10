@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 07:34:49 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 08:08:27 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:52:52 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void run_ft_list_push_front_tests()
    ft_list_push_front(&list, "sixth");
    assert(strcmp(list->data, "sixth") == 0 && ft_list_size(list) == 6);
 
+   print_list(list);
+
 
    free_list(list);
 
-   printf("All ft_list_push_front tests passed successfully!\n");
+   printf("%s\nAll ft_list_push_front tests passed successfully!%s\n", GREEN, RESET);
    
 }

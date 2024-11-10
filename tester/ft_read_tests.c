@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 22:29:46 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 07:47:21 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:52:13 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void run_ft_read_tests() {
     char buf_orig[100];
     char buf_my[100];
 
-    fd_orig = open("./srcs/tests/testfile.txt", O_RDONLY);
-    fd_my = open("./srcs/tests/testfile.txt", O_RDONLY);
+    fd_orig = open("testfile.txt", O_RDONLY);
+    fd_my = open("testfile.txt", O_RDONLY);
     
     if (fd_orig == -1 || fd_my == -1) {
-        perror("Failed to open test file");
+        perror("Failed to open testasdas file");
         return;
     }
 
@@ -69,5 +69,5 @@ void run_ft_read_tests() {
         assert(original_errno == my_errno);
     }
 
-    printf("All ft_read tests passed successfully!\n");
+    printf("%s\nAll ft_read tests passed successfully!\n%s", GREEN, RESET);
 }

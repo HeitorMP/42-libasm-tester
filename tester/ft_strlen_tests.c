@@ -6,14 +6,16 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:45:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/08 22:33:32 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:50:37 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
 
+
 void run_ft_strlen_tests() {
     // Basic tests with common strings
+    
     assert(ft_strlen("") == strlen(""));             // Test 1: empty string
     assert(ft_strlen("a") == strlen("a"));           // Test 2: single character
     assert(ft_strlen("ab") == strlen("ab"));         // Test 3: two characters
@@ -51,5 +53,5 @@ void run_ft_strlen_tests() {
     assert(ft_strlen("Olá") == strlen("Olá"));             // Test 19: Portuguese
     assert(ft_strlen("こんにちは") == strlen("こんにちは")); // Test 20: Japanese (unicode)
 
-    printf("All ft_strlen tests passed successfully!\n");
+    printf("%s\nAll ft_strlen tests passed successfully!\n$%s\n", GREEN, RESET);
 }

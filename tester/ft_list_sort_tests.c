@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 08:11:09 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/09 08:42:23 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:52:23 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void run_ft_list_sort_tests()
     free_list(list);
     list = NULL;
 
-    printf("All ft_list_sort tests passed successfully!\n");
+    printf("\n%sAll ft_list_sort tests passed successfully!\n%s", GREEN, RESET);
     
 }
