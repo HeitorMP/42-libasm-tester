@@ -23,6 +23,28 @@ Follow these steps to use the tester:
     cd <path-to-42-libasm-project>/tester
     make
     ```
+4. ***Compile the main project!***
+
+5. ***Edit the tests.h File***
+    ```
+    Open the tests.h file inside the tester folder and update the path to the libasm.h header file to point to its correct location in your environment.
+
+    // path to your libasm.h
+    # include "../headers/libasm.h" <- change this if needed
+    ```
+
+6. **Edit the Makefile**
+    ```
+    Open the Makefile inside the tester folder and update the path to the libasm.a library file so it points to the correct location.
+
+    PATH_TO_LIBASM_A  = ../libasm.a <- change this if needed
+    ```
+
+7. **Compile and Run the Tester**
+    ```
+    make
+    ./libasm-tester
+    ```
 
 ## The tester will execute and show the results of various tests to check the functionality of your libasm implementation.
 ### A file named `log_erros.txt` will be generated with the test results.
