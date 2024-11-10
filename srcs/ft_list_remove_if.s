@@ -3,60 +3,103 @@ BITS 64
 section .text
     global ft_list_remove_if
     extern ft_strcmp
+    extern free
 
 ft_list_remove_if:
-    push rbp
-    mov rbp, rsp
+    push rbp                        
+    mov rbp, rsp                    ; Update rsp to point to the stack
 
-    mov r15, rdi                   ; r15 = head (ponteiro para o início da lista)
-    mov r14, [rdi]                 ; r14 = nó atual (começo da lista)
-    mov r11, rsi                   ; r11 = data_ref (dado para comparar)
-    mov r12, rdx                   ; r12 = função cmp
-    mov r13, rcx                   ; r13 = função free
+    mov r15, rdi                    ; r15 = head (pointer to the start of the list)
+    mov r14, [rdi]                  ; r14 = current node (start of the list)
+    mov r11, rsi                    ; r11 = data_ref (data to compare)
+    mov r12, rdx                    ; r12 = cmp function
+    mov r13, rcx                    ; r13 = free function
+    mov qword r10, 0                ; r10 = previous node (initially NULL)
 
 .loop_list:
-    test r14, r14                  ; verifica se r14 é NULL (fim da lista)
-    jz .return
+    test r14, r14                   ; Check if r14 is NULL (end of the list)
+    jz .return                       ; If NULL, return (end of list)
 
-    mov rdi, [r14]                 ; rdi = r14.data (dado do nó atual)
-    mov rsi, r11                   ; rsi = data_ref
-    call r12                       ; chamada da função cmp (comparação)
-    cmp rax, 0                     ; verifica o resultado da comparação
-    jne .next_node                 ; se diferente, vá para o próximo nó
+    ; prepare the stack for the call to the cmp function
+    push r14
+    push r10
+    push r15
+    push r11
+    push r12
+    push r13
 
-    ; Deletar nó atual
-    cmp [r15], r14                 ; verifica se estamos no primeiro nó
-    je .delete_first_node          ; se sim, trata como caso especial para atualizar o head
+    mov rdi, [r14]                  ; rdi = r14.data (data of the current node)
+    mov rsi, r11                    ; rsi = data_ref
+    call r12                        ; Call the cmp function (comparison)
 
-    ; Caso geral: nó do meio ou fim da lista
-    mov r9, [r14 + 8]              ; r9 = próximo nó (salva o próximo nó antes de chamar free)
-    mov [r10 + 8], r9              ; r10.next = r14.next (nó anterior aponta para o próximo)
+    pop r13
+    pop r12
+    pop r11
+    pop r15
+    pop r10
+    pop r14
 
-    ; Chama a função free para liberar a memória do nó atual
-    mov rdi, r14                   ; prepara rdi para chamar free com o nó atual
-    call r13                       ; chama a função free para liberar a memória
-    mov rdi, 0                     ; zera rdi para evitar problemas com a chamada da função free
+    cmp rax, 0                      ; Check the result of the comparison
+    jne .next_node                  ; If not equal, go to the next node
 
-    mov r14, r9                    ; atualiza r14 para o próximo nó após a remoção
-    jmp .loop_list                 ; continua iterando a lista
+    ; Delete the current node
+    cmp qword [r15], r14            ; Check if we are at the first node
+    je .delete_first_node           ; If yes, treat it as a special case to update the head
+
+    mov qword r9, [r14 + 8]         ; r9 = next node (save the next node before calling free)
+    mov [r10 + 8], r9               ; r10.next = r14.next (previous node points to the next one)
+
+    ; prepare the stack for the call to free
+    push r14                        
+    push r10                        
+    push r15                        
+    push r11                        
+    push r12                        
+    push r13                        
+
+    mov rdi, r14                    ; Prepare rdi to call free with the current node
+    call r13                        ; Call the free function to free the memory
+
+    pop r13                         
+    pop r12                         
+    pop r11                         
+    pop r15                         
+    pop r10                         
+    pop r14                         
+    ; stack resored after the call to free
+
+    mov r14, r9                     ; Update r14 to the next node after removal
+    jmp .loop_list                  ; Continue iterating through the list
 
 .delete_first_node:
-    mov r9, [r14 + 8]              ; r9 = próximo nó
-    mov [r15], r9                  ; head = r14.next (atualiza o head)
+    mov qword r9, [r14 + 8]         ; r9 = next node
+    mov qword [r15], r9             ; Update head = r14.next (removes the first node)
 
-    ; Chama a função free para liberar a memória do primeiro nó
-    mov rdi, r14                   ; prepara rdi para chamar free com o nó atual
-    call r13                       ; chama a função free para liberar a memória
-    mov rdi, 0                     ; zera rdi para evitar problemas com a chamada da função free
+    push r14                        
+    push r10                        
+    push r15                        
+    push r11                        
+    push r12                        
+    push r13                        
 
-    mov r14, r9                    ; atualiza r14 para o próximo nó após a remoção
-    jmp .loop_list                 ; continua iterando a lista
+    mov rdi, r14                    ; Prepare rdi to call free with the current node
+    call 13                         ; Call the free function to free the memory
+
+    pop r13                         
+    pop r12                         
+    pop r11                         
+    pop r15                         
+    pop r10                         
+    pop r14                         
+
+    mov r14, r9                     ; Update r14 to the next node after removal
+    jmp .loop_list                  ; Continue iterating through the list
 
 .next_node:
-    mov r10, r14                   ; r10 = nó atual (mantém o nó anterior)
-    mov r14, [r14 + 8]             ; r14 = próximo nó
-    jmp .loop_list                 ; volta ao início do loop para verificar o próximo nó
+    mov qword r10, r14              ; r10 = current node (keeps the previous node)
+    mov r14, [r14 + 8]              ; r14 = next node
+    jmp .loop_list                  ; Go back to the start of the loop to check the next node
 
 .return:
-    leave
+    leave                           
     ret
