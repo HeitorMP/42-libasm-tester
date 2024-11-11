@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:45:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/10 18:51:01 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:41:03 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void run_ft_write_tests() {
     orig_errno = errno;
     assert((ft_result == orig_result) && (ft_errno == orig_errno));
 
-    printf("\n$sAll ft_write tests passed successfully!\n%s", GREEN, RESET);
+    printf("\n%sAll ft_write tests passed successfully!\n%s", GREEN, RESET);
 }
