@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:44:06 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/11 10:49:14 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:02:51 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 #define assert(condition) \
     if (!(condition)) { \
         fprintf(stderr, "\033[0;31mAssertion failed: %s, file %s, line %d\n\033[0m", #condition, __FILE__, __LINE__); \
+        fprintf(stdout, "\033[0;31mAssertion failed: %s, file %s, line %d\n\033[0m", #condition, __FILE__, __LINE__); \
     } else { \
         fprintf(stdout, "\033[0;32mAssertion passed: %s\n\033[0m", #condition); \
     }
