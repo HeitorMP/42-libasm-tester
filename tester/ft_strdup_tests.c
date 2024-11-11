@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:35:28 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/10 18:51:22 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:52:29 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void run_ft_strdup_tests() {
     free(result1);
     free(result2);
 
-    printf("%s\nAll ft_strdup tests passed successfully!\n,$s", GREEN, RESET);
+    printf("%s\nAll ft_strdup tests passed successfully!\n%s", GREEN, RESET);
 
 }
