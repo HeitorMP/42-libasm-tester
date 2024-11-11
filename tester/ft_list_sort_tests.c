@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 08:11:09 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/11 10:41:52 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:46:25 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ void run_ft_list_sort_tests()
     ft_list_push_back(&list, "42");
     ft_list_push_back(&list, "!");
 
+
+    printf("\nList before sorting:\n");
+    print_list(list);
+
     ft_list_sort(&list, &ft_strcmp);
     assert(strcmp(list->data, "!") == 0 && \
            strcmp(list->next->data, "42") == 0 && \
@@ -109,6 +113,9 @@ void run_ft_list_sort_tests()
            strcmp(list->next->next->next->next->next->next->next->next->next->next->next->next->next->data, "Universe") == 0 && \
            strcmp(list->next->next->next->next->next->next->next->next->next->next->next->next->next->next->data, "World") == 0);
     
+
+    printf("list after sorting:\n");
+    print_list(list);
     free_list(list);
     list = NULL;
 
