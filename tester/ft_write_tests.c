@@ -6,7 +6,7 @@
 /*   By: hmaciel- <hmaciel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:45:24 by hmaciel-          #+#    #+#             */
-/*   Updated: 2024/11/11 10:41:03 by hmaciel-         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:12:06 by hmaciel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void run_ft_write_tests() {
     errno = 0;
     ft_result = ft_write(-1, "Invalid FD\n", 11);
     ft_errno = errno;
+    printf("%d\n",ft_errno);
     errno = 0;
     orig_result = write(-1, "Invalid FD\n", 11);
     orig_errno = errno;
+    printf("%d\n",orig_errno);
     assert((ft_result == orig_result) && (ft_errno == orig_errno));
     errno = 0;
 
@@ -57,11 +59,9 @@ void run_ft_write_tests() {
     const char *large_str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n";
     ft_result = ft_write(1, large_str, strlen(large_str));
     ft_errno = errno;
-    printf("%d\n",ft_errno);
     orig_result = write(1, large_str, strlen(large_str));
     errno = 0;
     orig_errno = errno;
-    printf("%d\n",orig_errno);
     assert((ft_result == orig_result) && (ft_errno == orig_errno));
 
     // Test 6: Null pointer as buffer
